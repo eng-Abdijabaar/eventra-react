@@ -1,0 +1,25 @@
+@import "tailwindcss";
+
+@theme {
+  --color-fb-bg: #f0f2f5;
+  --color-fb-blue: #0866ff;
+}
+
+body {
+  background-color: var(--color-fb-bg);
+}
+
+@keyframes slide-in-top {
+  0% {
+    opacity: 0;
+    transform: translateY(-15px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-in-top {
+  animation: slide-in-top 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
