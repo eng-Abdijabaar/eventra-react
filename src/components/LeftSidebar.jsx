@@ -1,29 +1,9 @@
-import { useAuth } from "@clerk/react";
 import { Link, useLocation } from "react-router";
 import { Bookmark, Heart, Images, Loader2, User, AlertCircle } from "lucide-react";
-import { useEffect } from "react";
-import { useUserStore } from "../store/useUserStore";
 
-export default function LeftSidebar() {
-  const { getToken } = useAuth();
+export default function LeftSidebar({user, isLoading, error}) {
   const location = useLocation();
-  const user = useUserStore((state) => state.user);
-  const getUser = useUserStore((state) => state.getUser);
-  const isLoading = useUserStore((state) => state.isLoading);
-  const error = useUserStore((state) => state.error);
-
-  useEffect(() => {
-    
-    const fetchUser = async () => {
-      const token = await getToken();
-      if (token) {
-        await getUser(token);
-      }
-    };
-
-    fetchUser();
-  }, [getToken, getUser]);
-
+  
 
   const links = [
     { name: `Followers (${user?.followersCount ?? 0})`, icon: <User size={24} strokeWidth={1.5} />, path: "/followers", },
@@ -52,6 +32,15 @@ export default function LeftSidebar() {
         </div>
       </div>
     );
+  }
+
+  if (!user) {
+    return <div className="flex items-center justify-center min-h-screen"><Loader2 className="animate-spin w-10 h-10 " color='blue' /> </div>;
+  }
+
+   if (user) {
+    console.log('user data: ', user);
+    
   }
 
   return (

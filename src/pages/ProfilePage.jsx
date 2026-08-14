@@ -25,6 +25,11 @@ const ProfilePage = () => {
         fetchUserProfile()
     }, [getToken, getUserProfile]);
 
+    useEffect(()=>{
+        console.log('userProfile data: ', userProfile);
+        
+    },[userProfile])
+
 
     const [imagePreview, setImagePreview] = useState(null);
     const [selectedFile, setSelectedFile] = useState(null);
@@ -222,7 +227,7 @@ const ProfilePage = () => {
             <div className="text-black max-w-5xl mx-auto w-full border-x border-gray-100">
                 <div className="grid grid-cols-3 gap-0.5 mt-0.5">
                     {userProfile.posts.length > 0 ? (
-                        posts.map((post, idx) => (
+                        userProfile.posts.map((post, idx) => (
                             <div key={idx} className="aspect-3/4 bg-gray-900 relative group cursor-pointer">
                                 <img src={post.media[0]?.url} alt="Post" className="w-full h-full object-cover" />
                             </div>

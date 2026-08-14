@@ -10,10 +10,12 @@ const LoginPage = () => {
     try {
       await signIn.sso({
         strategy: "oauth_google",
-        redirectUrl: "/sso-callback",
+        redirectCallbackUrl: "/sso-callback",
         redirectUrlComplete: "/",
       });
 
+      console.log('fghjkl');
+      
     } catch (error) {
       console.log(error);
     }

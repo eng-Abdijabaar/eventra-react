@@ -6,6 +6,7 @@ import LoginPage from './pages/LoginPage';
 import SsoCallback from './components/SsoCallback';
 import PublicRoute from './components/PublicRoute';
 import ProfilePage from './pages/ProfilePage';
+import PostDetails from './pages/PostDetails';
 
 const App = () => {
   return (
@@ -25,7 +26,7 @@ const App = () => {
           <Route
             path="/sso-callback"
             element={
-              <PublicRoute >
+              <PublicRoute>
                 <SsoCallback />
               </PublicRoute>
             }
@@ -45,6 +46,14 @@ const App = () => {
             element={
               <ProtectedRoute>
                 <ProfilePage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/post/:postId"
+            element={
+              <ProtectedRoute>
+                <PostDetails />
               </ProtectedRoute>
             }
           />
